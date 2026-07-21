@@ -721,7 +721,7 @@ button{
 //======================================================
 
 const LICENSE_API =
-"https://script.google.com/macros/s/AKfycbwSKbt3Z3fqlIxIM_fyCDO-J5mE-KeMAlOZL1hGI-Y78dlVpitP_OeaKfq1NDXmDXmV/exec";
+"https://script.google.com/macros/s/AKfycbyE7UtLzwYfv8RmHM5Yhm6_II89j3Vae-mcIJgCKJNb5A1oRZKh840enZyRqaLnKMXasA/exec";
 
 
 //======================================================
@@ -892,7 +892,328 @@ function restoreSession(){
 
         return;
 
-    }
+    }/*****************************************************************
+ SMARTBIO QR PRO v2.1.0
+
+ PART 6
+ LOGIN SYSTEM
+
+*****************************************************************/
+
+
+//======================================================
+// LOGIN BUTTON CONTROL
+//======================================================
+
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+
+let loginButton =
+document.getElementById("loginButton");
+
+
+if(loginButton){
+
+
+loginButton.onclick=function(){
+
+    login();
+
+};
+
+
+}
+
+
+});
+
+
+
+
+//======================================================
+// LOGIN FUNCTION
+//======================================================
+
+
+function login(){
+
+
+let key =
+document.getElementById("licenseKey")
+.value
+.trim();
+
+
+let user =
+document.getElementById("username")
+.value
+.trim();
+
+
+let pass =
+document.getElementById("password")
+.value
+.trim();
+
+
+
+if(
+key=="" ||
+user=="" ||
+pass==""
+){
+
+
+showMessage(
+"Please enter License Key, Username and Password"
+);
+
+
+return;
+
+
+}
+
+
+
+
+showMessage(
+"Checking License..."
+);
+
+
+
+
+
+let url =
+
+LICENSE_API
+
++
+"?action=login"
+
++
+"&apiKey=Ryan@1304"
+
++
+"&licenseKey="
+
++
+encodeURIComponent(key)
+
++
+"&username="
+
++
+encodeURIComponent(user)
+
++
+"&password="
+
++
+encodeURIComponent(pass);
+
+
+
+
+
+fetch(url)
+
+
+
+.then(response=>response.json())
+
+
+
+.then(data=>{
+
+
+
+console.log(
+"LOGIN RESPONSE",
+data
+);
+
+
+
+
+
+if(
+String(data.status).toUpperCase()
+!=
+"VALID"
+){
+
+
+showMessage(
+data.message ||
+"Login Failed"
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+//================================
+// SAVE LOGIN INFORMATION
+//================================
+
+
+licenseKey = key;
+
+username = user;
+
+
+hospitalID =
+data.hospital.Hospital_ID || "";
+
+
+
+hospitalName =
+data.hospital.Hospital_Name || "";
+
+
+
+currentUser =
+data.user || {};
+
+
+
+hospitalProfile =
+data.hospital || {};
+
+
+
+permissions =
+data.permissions || {};
+
+
+
+
+
+
+//================================
+// STORE SESSION
+//================================
+
+
+
+localStorage.setItem(
+STORAGE.LOGIN,
+"YES"
+);
+
+
+
+localStorage.setItem(
+STORAGE.LICENSE_KEY,
+licenseKey
+);
+
+
+
+localStorage.setItem(
+STORAGE.HOSPITAL_ID,
+hospitalID
+);
+
+
+
+localStorage.setItem(
+STORAGE.USERNAME,
+username
+);
+
+
+
+localStorage.setItem(
+STORAGE.LOGIN_TIME,
+Date.now()
+);
+
+
+
+localStorage.setItem(
+STORAGE.AUTO_LOGOFF,
+currentUser.Auto_Logoff || 60
+);
+
+
+
+localStorage.setItem(
+STORAGE.PERMISSIONS,
+JSON.stringify(permissions)
+);
+
+
+
+
+
+//================================
+// OPEN APPLICATION
+//================================
+
+
+openScannerPage();
+
+
+
+})
+
+
+
+.catch(error=>{
+
+
+console.log(error);
+
+
+showMessage(
+"Unable to connect with License Server"
+);
+
+
+});
+
+
+}
+
+
+
+
+
+
+//======================================================
+// MESSAGE DISPLAY
+//======================================================
+
+
+function showMessage(text){
+
+
+let msg =
+document.getElementById("msg");
+
+
+if(msg){
+
+
+msg.innerHTML=text;
+
+
+}
+
+
+}
 
     hospitalID =
         localStorage.getItem(STORAGE.HOSPITAL_ID) || "";
