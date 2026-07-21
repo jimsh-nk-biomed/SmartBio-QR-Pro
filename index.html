@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>SMARTBIO QR PRO v2.1.0</title>
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<style>
+
+/* /*==========================================================
+ SMARTBIO QR PRO v2.1.0
+ PART 2 - COMPLETE CSS
+==========================================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Arial,sans-serif;
+}
+
+body{
+    background:#eef3f8;
+    color:#333;
+    padding:15px;
+}
+
+.card{
+    max-width:430px;
+    margin:auto;
+    background:#ffffff;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.logo img{
+    width:170px;
+    max-width:90%;
+}
+
+.title{
+    text-align:center;
+    font-size:24px;
+    font-weight:700;
+    color:#0056b3;
+    margin-bottom:20px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#777;
+    font-size:14px;
+    margin-top:-10px;
+    margin-bottom:20px;
+}
+
+.sectionTitle{
+    font-size:18px;
+    font-weight:bold;
+    color:#0056b3;
+    margin-bottom:10px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #d5d5d5;
+    border-radius:10px;
+    font-size:15px;
+    margin-bottom:12px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#007bff;
+}
+
+.passwordBox{
+    position:relative;
+}
+
+.passwordBox span{
+    position:absolute;
+    right:15px;
+    top:13px;
+    cursor:pointer;
+    font-size:20px;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    background:#007bff;
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
+    margin-top:10px;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.logoutBtn{
+    background:#dc3545;
+}
+
+.scanBtn{
+    background:#28a745;
+}
+
+.orangeBtn{
+    background:#ff9800;
+}
+
+.grayBtn{
+    background:#607d8b;
+}
+
+#reader{
+    width:100%;
+    margin-top:15px;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.assetBox{
+    margin-top:18px;
+    border:2px solid #0d6efd;
+    border-radius:12px;
+    padding:15px;
+    background:#f8fbff;
+}
+
+.assetTitle{
+    font-size:18px;
+    color:#0d6efd;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:120px 12px auto;
+    margin:7px 0;
+    font-size:14px;
+}
+
+.label{
+    font-weight:bold;
+    color:#003366;
+}
+
+.value{
+    word-break:break-word;
+}
+
+.statusOK{
+    color:green;
+    font-weight:bold;
+}
+
+.statusDue{
+    color:#ff9800;
+    font-weight:bold;
+}
+
+.statusOver{
+    color:red;
+    font-weight:bold;
+}
+
+.docButton{
+    background:#0069d9;
+}
+
+.breakdownButton{
+    background:#c62828;
+}
+
+.closeButton{
+    background:#2e7d32;
+}
+
+.hidden{
+    display:none;
+}
+
+.message{
+    text-align:center;
+    color:red;
+    margin-top:12px;
+    font-size:14px;
+}
+
+.footer{
+    text-align:center;
+    margin-top:25px;
+    color:#777;
+    font-size:12px;
+}
+
+.blueBox{
+    background:#eaf4ff;
+    border:1px solid #2196f3;
+    border-radius:12px;
+    padding:15px;
+    margin-top:15px;
+}
+
+.greenBox{
+    background:#edf9ed;
+    border:1px solid #4caf50;
+    border-radius:12px;
+    padding:15px;
+    margin-top:15px;
+}
+
+.orangeBox{
+    background:#fff5e8;
+    border:1px solid #ff9800;
+    border-radius:12px;
+    padding:15px;
+    margin-top:15px;
+}
+
+.redBox{
+    background:#fff1f1;
+    border:1px solid #f44336;
+    border-radius:12px;
+    padding:15px;
+    margin-top:15px;
+}
+
+.infoBadge{
+    display:inline-block;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:12px;
+    color:#fff;
+    background:#0d6efd;
+    margin-top:8px;
+}
+
+@media(max-width:500px){
+
+.card{
+    padding:15px;
+}
+
+.row{
+    grid-template-columns:100px 10px auto;
+    font-size:13px;
+}
+
+.title{
+    font-size:22px;
+}
+
+button{
+    font-size:15px;
+}
+
+} */
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- SMARTBIO LOGIN PAGE -->
+<!-- ========================================= -->
+
+<div id="loginPage">
+
+    <div class="card">
+
+        <div class="logo">
+            <img src="logo.jpg" alt="SMARTBIO Logo">
+        </div>
+
+        <div class="title">
+            SMARTBIO QR PRO
+        </div>
+
+        <div class="subtitle">
+            Asset Scan2Maintain v2.1.0
+        </div>
+
+        <!-- ===============================
+             Hospital Information
+        ================================ -->
+
+        <div class="sectionTitle">
+    User Login
+</div>
+
+
+        <input
+    type="text"
+    id="licenseKey"
+    placeholder="Login ID"
+    autocomplete="off">
+
+        <!-- ===============================
+             User Login
+        ================================ -->
+
+
+        <div class="passwordBox">
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                autocomplete="off">
+
+            <span
+                id="eyeIcon"
+                onclick="togglePassword()">
+                👁️
+            </span>
+
+        </div>
+
+        <!-- ===============================
+             Login Button
+        ================================ -->
+
+        <button id="loginButton">
+
+            LOGIN
+
+        </button>
+
+        <!-- ===============================
+             Message Area
+        ================================ -->
+
+        <div
+            id="msg"
+            class="message">
+        </div>
+
+        <!-- ===============================
+             Software Information
+        ================================ -->
+
+        <div class="footer">
+
+            SMARTBIO QR PRO v2.1.0<br>
+
+            Biomedical Asset Management System
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ========================================= -->
+<!-- SMARTBIO SCANNER PAGE -->
+<!-- ========================================= -->
+
+<div id="scannerPage" style="display:none;">
+
+    <div class="card">
+
+        <!-- ========================= -->
+        <!-- Logo -->
+        <!-- ========================= -->
+
+        <div class="logo">
+            <img src="logo.jpg" alt="SMARTBIO Logo">
+        </div>
+
+        <div class="title">
+            SMARTBIO QR PRO
+        </div>
+
+        <div class="subtitle">
+
+            Asset Scan2Maintain v2.1.0
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- Hospital Information -->
+        <!-- ========================= -->
+
+        <div class="blueBox">
+
+            <div class="sectionTitle">
+
+                Hospital Information
+
+            </div>
+
+            <div class="row">
+                <div class="label">Hospital</div>
+                <div>:</div>
+                <div class="value" id="hospitalNameLabel">-</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Hospital ID</div>
+                <div>:</div>
+                <div class="value" id="hospitalIDLabel">-</div>
+            </div>
+
+            <div class="row">
+                <div class="label">License</div>
+                <div>:</div>
+                <div class="value" id="licenseStatusLabel">
+                    ACTIVE
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="label">Days Left</div>
+                <div>:</div>
+                <div class="value" id="licenseDaysLabel">
+                    -
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- QR Scanner -->
+        <!-- ========================= -->
+
+        <div class="greenBox">
+
+            <div class="sectionTitle">
+
+                QR Scanner
+
+            </div>
+
+            <div id="reader"></div>
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- Equipment Details -->
+        <!-- ========================= -->
+
+        <div
+            id="equipmentCard"
+            class="assetBox"
+            style="display:none;">
+
+            <div class="assetTitle">
+
+                Equipment Details
+
+            </div>
+
+            <div class="row">
+                <div class="label">Asset No</div>
+                <div>:</div>
+                <div id="assetNo" class="value">-</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Department</div>
+                <div>:</div>
+                <div id="department" class="value">-</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Equipment</div>
+                <div>:</div>
+                <div id="equipmentName" class="value">-</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Model</div>
+                <div>:</div>
+                <div id="model" class="value">-</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Make</div>
+                <div>:</div>
+                <div id="make" class="value">-</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Serial No</div>
+                <div>:</div>
+                <div id="serialNo" class="value">-</div>
+            </div>
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- PMS -->
+        <!-- ========================= -->
+
+        <div
+            id="pmsCard"
+            class="orangeBox"
+            style="display:none;">
+
+            <div class="sectionTitle">
+
+                PMS Details
+
+            </div>
+
+            <div class="row">
+                <div class="label">Done On</div>
+                <div>:</div>
+                <div id="pmsDone">-</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Due On</div>
+                <div>:</div>
+                <div id="pmsDue">-</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Status</div>
+                <div>:</div>
+                <div id="pmsStatus">-</div>
+            </div>
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- Calibration -->
+        <!-- ========================= -->
+
+        <div
+            id="calibrationCard"
+            class="blueBox"
+            style="display:none;">
+
+            <div class="sectionTitle">
+
+                Calibration Details
+
+            </div>
+
+            <div class="row">
+                <div class="label">Done On</div>
+                <div>:</div>
+                <div id="calDone">-</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Due On</div>
+                <div>:</div>
+                <div id="calDue">-</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Status</div>
+                <div>:</div>
+                <div id="calStatus">-</div>
+            </div>
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- Documents -->
+        <!-- ========================= -->
+
+        <div id="documentsPanel">
+
+            <button
+                id="installationBtn"
+                class="docButton hidden">
+
+                Installation Document
+
+            </button>
+
+            <button
+                id="pmsBtn"
+                class="docButton hidden">
+
+                PMS Document
+
+            </button>
+
+            <button
+                id="calibrationBtn"
+                class="docButton hidden">
+
+                Calibration Document
+
+            </button>
+
+            <button
+                id="iqBtn"
+                class="docButton hidden">
+
+                IQ Document
+
+            </button>
+
+            <button
+                id="oqBtn"
+                class="docButton hidden">
+
+                OQ Document
+
+            </button>
+
+            <button
+                id="pqBtn"
+                class="docButton hidden">
+
+                PQ Document
+
+            </button>
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- Breakdown -->
+        <!-- ========================= -->
+
+        <button
+            id="reportBreakdownBtn"
+            class="breakdownButton hidden">
+
+            🚨 Report Breakdown
+
+        </button>
+
+        <button
+            id="closeBreakdownBtn"
+            class="closeButton hidden">
+
+            ✅ Close Breakdown
+
+        </button>
+
+        <!-- ========================= -->
+        <!-- Bottom Buttons -->
+        <!-- ========================= -->
+
+        <button
+            id="scanAgainButton"
+            class="scanBtn">
+
+            📷 Scan Again
+
+        </button>
+
+        <button
+            id="logoutButton"
+            class="logoutBtn">
+
+            Logout
+
+        </button>
+
+        <div class="footer">
+
+            SMARTBIO QR PRO v2.1.0
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* /*****************************************************************
+ SMARTBIO QR PRO v2.1.0
+ PART 3 - CONFIGURATION & GLOBAL VARIABLES
+******************************************************************/
+
+//======================================================
+// LICENSE SERVER URL
+//======================================================
+
+const LICENSE_API =
+"https://script.google.com/macros/s/AKfycbyE7UtLzwYfv8RmHM5Yhm6_II89j3Vae-mcIJgCKJNb5A1oRZKh840enZyRqaLnKMXasA/exec";
+
+
+//======================================================
+// SOFTWARE INFORMATION
+//======================================================
+
+const SOFTWARE = {
+
+    NAME : "SMARTBIO QR PRO",
+
+    VERSION : "2.1.0",
+
+    BUILD : "001"
+
+};
+
+
+//======================================================
+// GLOBAL VARIABLES
+//======================================================
+
+let qrScanner = null;
+
+let equipmentData = [];
+
+let currentEquipment = null;
+
+let currentUser = {};
+
+let hospitalProfile = {};
+
+let permissions = {};
+
+let hospitalID = "";
+
+let hospitalName = "";
+
+let licenseKey = "";
+
+let username = "";
+
+let autoLogoutMinutes = 60;
+
+let sessionStart = null;
+
+let licenseDaysRemaining = 0;
+
+
+//======================================================
+// LOCAL STORAGE KEYS
+//======================================================
+
+const STORAGE = {
+
+    LOGIN : "SB_LOGIN",
+
+    HOSPITAL_ID : "SB_HOSPITAL_ID",
+
+    LICENSE_KEY : "SB_LICENSE_KEY",
+
+    USERNAME : "SB_USERNAME",
+
+    LOGIN_TIME : "SB_LOGIN_TIME",
+
+    AUTO_LOGOFF : "SB_AUTO_LOGOFF",
+
+    PERMISSIONS : "SB_PERMISSIONS"
+
+};
+
+
+//======================================================
+// STATUS COLORS
+//======================================================
+
+const STATUS = {
+
+    OK : "OK",
+
+    DUE_SOON : "DUE SOON",
+
+    OVERDUE : "OVERDUE",
+
+    ACTIVE : "ACTIVE",
+
+    BLOCKED : "BLOCKED",
+
+    EXPIRED : "EXPIRED"
+
+};
+
+
+//======================================================
+// MODULE NAMES
+//======================================================
+
+const MODULE = {
+
+    INSTALLATION : "Installation",
+
+    PMS : "PMS",
+
+    CALIBRATION : "Calibration",
+
+    IQ : "IQ",
+
+    OQ : "OQ",
+
+    PQ : "PQ",
+
+    BREAKDOWN : "Breakdown",
+
+    REPORTS : "Reports"
+
+};
+
+
+//======================================================
+// DEFAULT SETTINGS
+//======================================================
+
+const DEFAULTS = {
+
+    AUTO_LOGOFF : 60,
+
+    CAMERA_FPS : 10,
+
+    QR_BOX : 250
+
+};
+
+
+//======================================================
+// STARTUP
+//======================================================
+
+window.addEventListener("load", initializeApplication);
+
+
+//======================================================
+// APPLICATION INITIALIZATION
+//======================================================
+
+function initializeApplication(){
+
+    console.log("===================================");
+
+    console.log(SOFTWARE.NAME);
+
+    console.log("Version :", SOFTWARE.VERSION);
+
+    console.log("Build   :", SOFTWARE.BUILD);
+
+    console.log("===================================");
+
+    restoreSession();
+
+}
+
+
+//======================================================
+// RESTORE PREVIOUS LOGIN
+//======================================================
+
+function restoreSession(){
+
+    if(localStorage.getItem(STORAGE.LOGIN)!=="YES"){
+
+        return;
+
+    }
+
+    hospitalID =
+        localStorage.getItem(STORAGE.HOSPITAL_ID) || "";
+
+    licenseKey =
+        localStorage.getItem(STORAGE.LICENSE_KEY) || "";
+
+    username =
+        localStorage.getItem(STORAGE.USERNAME) || "";
+
+    autoLogoutMinutes =
+        Number(localStorage.getItem(STORAGE.AUTO_LOGOFF)) || DEFAULTS.AUTO_LOGOFF;
+
+    sessionStart =
+        Number(localStorage.getItem(STORAGE.LOGIN_TIME));
+
+    console.log("Previous session detected.");
+
+    // Login page will automatically continue after
+    // successful login in Part 4.
+
+} */
+
+</script>
+
+</body>
+
+</html>
