@@ -813,7 +813,151 @@ function togglePassword(){
         p.type="password";
 
 }
+//==================================================
+// START QR SCANNER
+//==================================================
 
+function startScanner(){
+
+    if(html5QrCode!=null){
+        return;
+    }
+
+    html5QrCode = new Html5Qrcode("reader");
+
+    Html5Qrcode.getCameras()
+
+    .then(cameras=>{
+
+        if(cameras.length==0){
+
+            alert("No Camera Found");
+
+            return;
+
+        }
+
+        // Use the back camera if available
+        let cameraId = cameras[cameras.length-1].id;
+
+        html5QrCode.start(
+
+            cameraId,
+
+            {
+                fps:10,
+                qrbox:{
+                    width:250,
+                    height:250
+                }
+            },
+
+            onScanSuccess,
+
+            function(error){
+                // Ignore scan errors
+            }
+
+        );
+
+    })
+
+    .catch(err=>{
+
+        alert("Unable to open camera");
+
+        console.log(err);
+
+    });
+
+}
+
+
+
+//==================================================
+// STOP SCANNER
+//==================================================
+
+function stopScanner(){
+
+    if(html5QrCode==null)
+        return;
+
+    html5QrCode.stop()
+
+    .then(()=>{
+
+        html5QrCode.clear();
+
+        html5QrCode=null;
+
+    });
+
+}
+
+
+
+//==================================================
+// QR SUCCESS
+//==================================================
+
+function onScanSuccess(decodedText){
+
+    stopScanner();
+
+    alert("QR Code : " + decodedText);
+
+    // Next Part:
+    // Load equipment from server
+
+}
+
+
+
+//==================================================
+// LOGOUT
+//==================================================
+
+function logout(){
+
+    stopScanner();
+
+    localStorage.clear();
+
+    document.getElementById("scannerPage").style.display="none";
+
+    document.getElementById("loginPage").style.display="block";
+
+    document.getElementById("licenseKey").value="";
+
+    document.getElementById("username").value="";
+
+    document.getElementById("password").value="";
+
+    document.getElementById("loginMessage").innerHTML="";
+
+}
+
+
+
+//==================================================
+// AUTO LOGOUT
+//==================================================
+
+function startAutoLogout(){
+
+    if(sessionTimer)
+        clearTimeout(sessionTimer);
+
+    sessionTimer = setTimeout(function(){
+
+        alert("Session Expired");
+
+        logout();
+
+    },30*60*1000);
+
+}
 </script>
 
 </body>
