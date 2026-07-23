@@ -984,6 +984,40 @@ getStatus(data.pmsDue);
 
 document.getElementById("calStatus").innerHTML =
 getStatus(data.calibrationDue);
+
+//=========================================
+// DOCUMENT BUTTONS
+//=========================================
+
+// Installation
+document.getElementById("btnInstallation").onclick = function () {
+    openPDF(data.installationPDF);
+};
+
+// PMS
+document.getElementById("btnPMS").onclick = function () {
+    openPDF(data.pmsPDF);
+};
+
+// Calibration
+document.getElementById("btnCalibration").onclick = function () {
+    openPDF(data.calibrationPDF);
+};
+
+// IQ
+document.getElementById("btnIQ").onclick = function () {
+    openPDF(data.iqPDF);
+};
+
+// OQ
+document.getElementById("btnOQ").onclick = function () {
+    openPDF(data.oqPDF);
+};
+
+// PQ
+document.getElementById("btnPQ").onclick = function () {
+    openPDF(data.pqPDF);
+};
     })
 
     .catch(err=>{
@@ -1086,6 +1120,35 @@ function formatDate(dateValue){
     let year = d.getFullYear();
 
     return day + "-" + month + "-" + year;
+
+}//=========================================
+// OPEN PDF
+//=========================================
+
+function openPDF(url){
+
+    if(!url || url.trim()==""){
+
+        alert("Document not available.");
+
+        return;
+
+    }
+
+    // Convert Google Drive link to preview link
+    if(url.indexOf("drive.google.com") !== -1){
+
+        let match = url.match(/\/d\/([^\/]+)/);
+
+        if(match){
+
+            url = "https://drive.google.com/file/d/" + match[1] + "/preview";
+
+        }
+
+    }
+
+    window.open(url, "_blank");
 
 }
 </script>
