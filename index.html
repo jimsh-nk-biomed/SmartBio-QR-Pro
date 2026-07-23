@@ -953,11 +953,17 @@ function loadEquipment(assetNo){
         document.getElementById("make").innerHTML=data.make;
         document.getElementById("serialNo").innerHTML=data.serialNo;
 
-        document.getElementById("pmsDone").innerHTML=data.pmsDone;
-        document.getElementById("pmsDue").innerHTML=data.pmsDue;
+        document.getElementById("pmsDone").innerHTML =
+formatDate(data.pmsDone);
 
-        document.getElementById("calDone").innerHTML=data.calibrationDone;
-        document.getElementById("calDue").innerHTML=data.calibrationDue;
+document.getElementById("pmsDue").innerHTML =
+formatDate(data.pmsDue);
+
+document.getElementById("calDone").innerHTML =
+formatDate(data.calibrationDone);
+
+document.getElementById("calDue").innerHTML =
+formatDate(data.calibrationDue);
 
     })
 
@@ -1019,7 +1025,35 @@ function startAutoLogout(){
 }//=========================================
 // FORMAT DATE
 //=========================================
+//=========================================
+// GET STATUS
+//=========================================
 
+function getStatus(dateValue){
+
+    if(!dateValue)
+        return "N/A";
+
+    let due = new Date(dateValue);
+
+    let today = new Date();
+
+    due.setHours(0,0,0,0);
+    today.setHours(0,0,0,0);
+
+    let diff =
+    Math.ceil(
+    (due-today)/(1000*60*60*24));
+
+    if(diff<0)
+        return "🔴 OVERDUE";
+
+    if(diff<=30)
+        return "🟡 DUE SOON";
+
+    return "🟢 ACTIVE";
+
+}
 function formatDate(dateValue){
 
     if(!dateValue) return "";
