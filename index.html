@@ -275,12 +275,9 @@ LOGIN PAGE
 </div>
 
 <div class="title">
-SMARTBIO QR PRO
+SMART-BIO QR PRO
 </div>
 
-<div class="subtitle">
-Biomedical Asset Scan2Maintain
-</div>
 
 <input
 type="text"
@@ -333,16 +330,10 @@ style="display:none;">
 
 <div class="card">
 
-<div class="title">
-SMARTBIO QR PRO
-</div>
 
-<div
-class="subtitle"
-id="hospitalName">
-Hospital
+<div class="logo">
+<img src="logo.jpg" alt="logo">
 </div>
-
 
 <button
 class="logoutBtn"
@@ -755,8 +746,6 @@ function login(){
             licenseKey
         );
 
-        document.getElementById("hospitalName").innerHTML =
-        data.hospitalName;
 
         document.getElementById("loginPage").style.display="none";
 
@@ -1197,17 +1186,3 @@ function setButtonVisibility(buttonId, permission){
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
