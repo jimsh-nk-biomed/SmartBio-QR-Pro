@@ -966,6 +966,45 @@ getStatus(data.pmsDue);
 document.getElementById("calStatus").innerHTML =
 getStatus(data.calibrationDue);
 
+//==================================================
+// LICENSE MODULE CONTROL
+//==================================================
+
+//==================================================
+// MODULE CONTROL
+//==================================================
+
+setButtonVisibility("btnInstallation", currentHospital.installation);
+setButtonVisibility("btnPMS", currentHospital.pms);
+setButtonVisibility("btnCalibration", currentHospital.calibration);
+
+setButtonVisibility("btnIQ", currentHospital.iq);
+setButtonVisibility("btnOQ", currentHospital.oq);
+setButtonVisibility("btnPQ", currentHospital.pq);
+// Installation
+document.getElementById("btnInstallation").style.display =
+(currentHospital.installation=="YES") ? "inline-block" : "none";
+
+// PMS
+document.getElementById("btnPMS").style.display =
+(currentHospital.pms=="YES") ? "inline-block" : "none";
+
+// Calibration
+document.getElementById("btnCalibration").style.display =
+(currentHospital.calibration=="YES") ? "inline-block" : "none";
+
+// IQ
+document.getElementById("btnIQ").style.display =
+(currentHospital.iq=="YES") ? "inline-block" : "none";
+
+// OQ
+document.getElementById("btnOQ").style.display =
+(currentHospital.oq=="YES") ? "inline-block" : "none";
+
+// PQ
+document.getElementById("btnPQ").style.display =
+(currentHospital.pq=="YES") ? "inline-block" : "none";
+
 //=========================================
 // DOCUMENT BUTTONS
 //=========================================
@@ -1130,6 +1169,27 @@ function openPDF(url){
     }
 
     window.open(url, "_blank");
+
+}
+//==================================================
+// SHOW / HIDE BUTTON
+//==================================================
+
+function setButtonVisibility(buttonId, permission){
+
+    let btn = document.getElementById(buttonId);
+
+    if(!btn) return;
+
+    if(String(permission).toUpperCase()=="YES"){
+
+        btn.style.display="inline-block";
+
+    }else{
+
+        btn.style.display="none";
+
+    }
 
 }
 </script>
