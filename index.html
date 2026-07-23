@@ -496,6 +496,13 @@ id="serialNo">
 <div id="pmsDue"></div>
 </div>
 
+<!-- ADD THIS -->
+<div class="row">
+<div class="label">Status</div>
+<div>:</div>
+<div id="pmsStatus"></div>
+</div>
+
 </div>
 
 
@@ -516,6 +523,13 @@ id="serialNo">
 <div class="label">Due On</div>
 <div>:</div>
 <div id="calDue"></div>
+</div>
+
+<!-- ADD THIS -->
+<div class="row">
+<div class="label">Status</div>
+<div>:</div>
+<div id="calStatus"></div>
 </div>
 
 </div>
@@ -965,6 +979,11 @@ formatDate(data.calibrationDone);
 document.getElementById("calDue").innerHTML =
 formatDate(data.calibrationDue);
 
+document.getElementById("pmsStatus").innerHTML =
+getStatus(data.pmsDue);
+
+document.getElementById("calStatus").innerHTML =
+getStatus(data.calibrationDue);
     })
 
     .catch(err=>{
