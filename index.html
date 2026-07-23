@@ -1016,6 +1016,24 @@ function startAutoLogout(){
 
     },30*60*1000);
 
+}//=========================================
+// FORMAT DATE
+//=========================================
+
+function formatDate(dateValue){
+
+    if(!dateValue) return "";
+
+    let d = new Date(dateValue);
+
+    if(isNaN(d)) return dateValue;
+
+    let day = String(d.getDate()).padStart(2,'0');
+    let month = String(d.getMonth()+1).padStart(2,'0');
+    let year = d.getFullYear();
+
+    return day + "-" + month + "-" + year;
+
 }
 </script>
 
