@@ -901,14 +901,73 @@ function stopScanner(){
 // QR SUCCESS
 //==================================================
 
-function onScanSuccess(decodedText){
+//==================================================
+// QR SUCCESS
+//==================================================
+
+function onScanSuccess(assetNo){
 
     stopScanner();
 
-    alert("QR Code : " + decodedText);
+    loadEquipment(assetNo);
 
-    // Next Part:
-    // Load equipment from server
+}//==================================================
+// LOAD EQUIPMENT
+//==================================================
+
+function loadEquipment(assetNo){
+
+    let licenseKey =
+    localStorage.getItem("SMARTBIO_LICENSE");
+
+    let url =
+    API_URL
+    + "?action=getEquipment"
+    + "&licenseKey=" + encodeURIComponent(licenseKey)
+    + "&assetNo=" + encodeURIComponent(assetNo);
+
+    fetch(url)
+
+    .then(r=>r.json())
+
+    .then(data=>{
+
+        console.log(data);
+
+        if(data.status!="VALID"){
+
+            alert(data.message);
+
+            return;
+
+        }
+
+        currentEquipment=data;
+
+        document.getElementById("equipmentCard").style.display="block";
+
+        document.getElementById("assetNo").innerHTML=data.assetNo;
+        document.getElementById("department").innerHTML=data.department;
+        document.getElementById("equipment").innerHTML=data.equipment;
+        document.getElementById("model").innerHTML=data.model;
+        document.getElementById("make").innerHTML=data.make;
+        document.getElementById("serialNo").innerHTML=data.serialNo;
+
+        document.getElementById("pmsDone").innerHTML=data.pmsDone;
+        document.getElementById("pmsDue").innerHTML=data.pmsDue;
+
+        document.getElementById("calDone").innerHTML=data.calibrationDone;
+        document.getElementById("calDue").innerHTML=data.calibrationDue;
+
+    })
+
+    .catch(err=>{
+
+        console.log(err);
+
+        alert("Unable to load equipment.");
+
+    });
 
 }
 
